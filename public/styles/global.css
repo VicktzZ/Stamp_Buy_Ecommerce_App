@@ -1,0 +1,33 @@
+/* IMPORT FONTS */
+
+@import url('../fonts/Satoshi/index.css');
+@import url('../fonts/ITC-Avante-Garde-Gothic-Pro/index.css');
+
+/* SETUP */
+
+:root {
+    --primary: #FFC736;
+    --primary-hover: #bd9227;
+    --secondary: #F5F4EF;
+    --background-primary: #191916;
+    --background-secondary: #3E3E3A;
+    --default-padding: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Satoshi', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: var(--background-primary);
+    color: var(--secondary);
+}

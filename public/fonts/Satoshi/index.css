@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Satoshi';
+    src: url('Satoshi-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Satoshi Light';
+    src: url('Satoshi-Light.otf');
+}
+
+@font-face {
+    font-family: 'Satoshi Medium';
+    src: url('Satoshi-Medium.otf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Satoshi Bold';
+    src: url('Satoshi-Bold.otf');
+    font-weight: 900;
+}

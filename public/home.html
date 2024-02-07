@@ -1,0 +1,125 @@
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/bcb8081ab4.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Compras Selo - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+</head>
+
+<body>
+    <main class="home-wrapper">
+        <header class="home-header">
+            <div class="button-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="home-header-text">Produtos</div>
+            <div class="dropdown">
+                <div class="button-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item dropdown-item-username" href="#"></a></li>
+                    <li><a class="dropdown-item dropdown-stamp-item" href="#">
+                            <div>Selos:</div>
+                            <div class="d-flex gap-2" style="align-items: center;">
+                                <div class="user-tokens">2</div>
+                                <i class="fa-brands fa-fantasy-flight-games dropdown-stamp"></i>
+                            </div>
+                        </a></li>
+                    <li onclick="logout()"><a class="dropdown-item" href="#">Sair</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="product-wrapper container">
+            <div class="product-card-wrapper">
+                <div class="product-card-header">Panela Philco</div>
+                <div class="product-card-body">
+                    <img class="product-card-image"
+                        src="https://images.unsplash.com/photo-1624031000828-dba1b7a3e4ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <div class="product-card-description">Uma panela versátil que nunca deixa na mão! Troque seus selos
+                        agora e faça uma bela receita!</div>
+                </div>
+                <div class="product-card-button" data-bs-toggle="modal" data-bs-target="#confirmPurchaseModal">
+                    <div class="product-stamp-price">
+                        <div>8</div>
+                        <i class="fa-brands fa-fantasy-flight-games stamp"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card-wrapper">
+                <div class="product-card-header">Xícara de Porcelana</div>
+                <div class="product-card-body">
+                    <img class="product-card-image"
+                        src="https://images.unsplash.com/photo-1570784332176-fdd73da66f03?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <div class="product-card-description">Uma clássica xícara de café feita com porcelana. Sinta o gosto
+                        verdadeiro do café.</div>
+                </div>
+                <div class="product-card-button" class="product-card-button" data-bs-toggle="modal" data-bs-target="#confirmPurchaseModal">
+                    <div class="product-stamp-price">
+                        <div>2</div>
+                        <i class="fa-brands fa-fantasy-flight-games stamp"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card-wrapper">
+                <div class="product-card-header">Prato de Porcelana</div>
+                <div class="product-card-body">
+                    <img class="product-card-image"
+                        src="https://images.unsplash.com/photo-1525999147711-835474620964?q=80&w=2036&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <div class="product-card-description">Uma panela versátil que nunca deixa na mão! Troque seus selos
+                        agora e faça uma bela receita!</div>
+                </div>
+                <div class="product-card-button" class="product-card-button" data-bs-toggle="modal" data-bs-target="#confirmPurchaseModal">
+                    <div class="product-stamp-price">
+                        <div>4</div>
+                        <i class="fa-brands fa-fantasy-flight-games stamp"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card-wrapper">
+                <div class="product-card-header">Jogo de Facas (Chef)</div>
+                <div class="product-card-body">
+                    <img class="product-card-image"
+                        src="https://images.unsplash.com/photo-1602063238855-524c4d8b9b18?q=80&w=2109&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <div class="product-card-description">Uma panela versátil que nunca deixa na mão! Troque seus selos
+                        agora e faça uma bela receita!</div>
+                </div>
+                <div class="product-card-button" class="product-card-button" data-bs-toggle="modal" data-bs-target="#confirmPurchaseModal">
+                    <div class="product-stamp-price">
+                        <div>6</div>
+                        <i class="fa-brands fa-fantasy-flight-games stamp"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- MODAL -->
+    <div class="modal fade" id="confirmPurchaseModal" tabindex="-1" aria-labelledby="confirmPurchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmPurchaseModalLabel">Tem certeza?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer"></div>
+                <div class="container error-notification">
+                    <div class="alert alert-danger error-notification-text" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="./scripts/home.js"></script>
+</body>
+
+</html>
