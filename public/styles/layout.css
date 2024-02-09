@@ -1,4 +1,35 @@
-/* MISC */
+/* IMPORTS */
+
+@import url('../fonts/Satoshi/index.css');
+@import url('../fonts/ITC-Avante-Garde-Gothic-Pro/index.css');
+
+@import url(products.css);
+@import url(auth.css);
+@import url(stamps.css);
+@import url(home.css);
+
+/* Layout */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    z-index: 999;
+    background-color: var(--background-primary);
+}
+
+.header-text {
+    font-family: 'ITC';
+    font-size: 1.25rem;
+}
+
+.main-wrapper {
+    padding: var(--default-padding);
+    width: 100vw;
+}
 
 .center-wrapper {
     height: 100vh;
@@ -8,10 +39,16 @@
     justify-content: center;
 }
 
-.error-notification {
+.error-notification, .success-notification {
     display: none;
     margin-top: 25px;
     transition: .3s ease-in-out;
+}
+
+.success-notification-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button-icon {
@@ -20,7 +57,7 @@
     align-items: center;
     height: 30px;
     width: 30px;
-    color: var(--secondary);
+    color: var(--bs-secondary);
     padding: 25px;
     border: 1px solid var(--background-secondary);
     border-radius: 25px;
@@ -29,19 +66,20 @@
 }
 
 .button-icon:hover, .button-icon:active {
-    background-color: var(--primary);
+    background-color: var(--bs-gray);
+    color: var(--bs-light);
 }
 
 .stamp {
     font-size: 2rem;
 }
 
-.dropdown-stamp {
+.main-stamp {
     font-size: 1.25rem;
-    color: var(--primary);
+    color: var(--bs-warning);
 }
 
-.dropdown-stamp-item {
+.main-stamp-item {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -51,125 +89,9 @@
     content: none; 
 } 
 
-.modal-content {
-    background-color: var(--background-secondary    );
-    color: var(--secondary);
-}
-
-/* LOGIN PAGE */
-
-.login-form {
-    height: 60%;
-    width: 80%;
-}
-
-.login-header {
-    font-size: 3rem;
-    font-family: 'ITC Demi';
-    text-align: center;
-    color: var(--primary);
-}
-
-.login-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 25px;
-}
-
-.forgot-password-login, .forgot-password-signup {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-/* HOME PAGE */
-
-.home-wrapper {
-    padding: var(--default-padding);
-}
-
-.home-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.divider {
     width: 100%;
-}
-
-.home-header-text {
-    font-family: 'ITC';
-    font-size: 1.25rem;
-}
-
-.product-wrapper {
-    display: flex;
-    gap: 100px;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-@media screen and (min-width: 768px) {
-    .product-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        width: 1000px;
-        flex-direction: row;
-    }
-}
-
-.product-card-header {
-    font-family: 'ITC';
-    width: 80%;
-    font-size: 2rem;
-    margin-bottom: var(--default-padding);
-}
-
-.product-card-body {
-    height: 400px;
-    width: 100%;
-}
-
-.product-stamp-price {
-    display: flex;
-    gap: 5px;
-}
-
-.product-card-button {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 10px;
-    border-radius: 40px;
-    background-color: var(--primary);
-    color: var(--background-primary);
-    font-size: 1.25rem;
-    cursor: pointer;
-}
-
-.product-card-button:active, .product-card-button:hover {
-    background-color: var(--primary-hover);
-}
-
-.product-card-image {
-    height: 60%;
-    width: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-size: cover;
-    background-position: center;
-}
-
-.product-card-description {
-    height: 40%;
-    background-color: var(--secondary);
-    color: var(--background-primary);
-    font-size: 1.1rem;
-    padding: 10px;
-    font-family: 'Satoshi';
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
 }

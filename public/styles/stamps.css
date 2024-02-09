@@ -1,0 +1,71 @@
+.stamp-quantity-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stamp-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 50px;
+    gap: 50px;
+}
+
+.stamp-quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;    
+}
+
+.stamp-icon {
+    font-size: 2.5rem !important;
+}
+
+.stamp-quantity {
+    font-size: 4rem;
+}
+
+.stamp-cards-wrapper {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.stamp-card {
+    height: 125px;
+    width: 125px;
+    border-radius: 10px;
+    background-color: var(--bs-secondary);
+    transition: .3s ease-in-out;
+}
+
+.stamp-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: #52595f;
+}
+
+.stamp-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+}
+
+.stamps-icon {
+    font-size: 3.5rem;
+    color: white;
+}
+
+.stamp-card-description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-light);
+    font-size: 1rem;
+    font-weight: 900;
+}

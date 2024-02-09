@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <header style="top: 0px;" class="header">
+    <header class="header">
         <div onclick="history.back()" class="button-icon"><i class="fa-solid fa-arrow-left"></i></div>
-        <div class="header-text">Home</div>
+        <div class="header-text">Produtos</div>
         <div class="dropdown">
             <div class="button-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-regular fa-user"></i>
@@ -34,50 +34,36 @@
             </ul>
         </div>
     </header>
-    <div class="mb-3"></div>
-    <div class="home-header"></div>
-    <main class="main-wrapper container">
-        <div class="nav-card-button-wrapper">
-            <div onclick="location.href='/selos'" class="nav-card-button">
-                <div class="nav-card-button-stamps-wrapper">
-                    <div class="nav-card-button-stamps"></div>
-                    <div class="home-stamps-text">Selos</div>
-                </div>
-            </div>
-            <div onclick="location.href='/produtos'" class="nav-card-button">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="nav-card-button-text">Produtos</div>
-            </div>
-            <div onclick="location.href='/'" class="nav-card-button">
-                <i class="fa-solid fa-gauge"></i>
-                <div class="nav-card-button-text">Aceleradores</div>
-            </div>
-        </div>
-        <div class="stamps-redeem-wrapper">
-            <div class="stamps-redeem-title">
-                Resgate de Selos
-            </div>
-            <div class="stamps-redeem">
-                <script>
-                    const stampsRedeem = document.querySelector('.stamps-redeem')
-                    const stampsArray = []
-
-                    for (let i = 1; i <= 90; i++) {
-                        stampsArray.push(`<div style="height: 25; border-radius: 2.5px; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 20%); width: 60px; background-color: white;">${i}</div>`)
-                    }
-
-                    stampsRedeem.innerHTML = stampsArray.join('')
-                </script>
-            </div>
-            <div class="btn btn-primary">
-                Efetuar pedido
-            </div>
+    <main class="main-wrapper">
+        <div class="mb-5"></div>
+        <div class="product-wrapper container">
+            <!-- CONTENT RENDERING BY SCRIPT './script/products.js' -->
         </div>
     </main>
+    <!-- MODAL -->
+    <div class="modal fade" id="confirmPurchaseModal" tabindex="-1" aria-labelledby="confirmPurchaseModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmPurchaseModalLabel">Tem certeza?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                </div>
+                <div class="modal-body"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>
+                <div class="modal-footer"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>
+                <div class="container error-notification">
+                    <div class="alert alert-danger error-notification-text" role="alert"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>
+                </div>
+                <div class="container success-notification">
+                    <div class="alert alert-success success-notification-text" role="alert"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script src="./scripts/home.js"></script>
+    <script src="./scripts/products.js"></script>
     <script src="./scripts/userDataFunctions.js"></script>
 </body>
 

@@ -14,6 +14,11 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS products (
     id int(11) NOT NULL AUTO_INCREMENT,
     name varchar(100) NOT NULL,
-    price int(11) NOT NULL,
+    price float(11) NOT NULL,
+    img text NOT NULL,
+    first_discountTokenValue int(11) NOT NULL,
+    first_discountValue int(11) NOT NULL,
+    second_discountTokenValue int(11) NOT NULL,
+    second_discountValue int(11) NOT NULL,
     PRIMARY KEY (id)
 );

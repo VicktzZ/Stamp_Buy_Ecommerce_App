@@ -1,0 +1,23 @@
+.auth-form {
+    height: 60%;
+    width: 80%;
+}
+
+.auth-header {
+    font-size: 3rem;
+    font-family: 'ITC Demi';
+    text-align: center;
+    color: var(--bs-primary);
+}
+
+.auth-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.forgot-password-login, .forgot-password-signup {
+    text-decoration: underline;
+    cursor: pointer;
+}

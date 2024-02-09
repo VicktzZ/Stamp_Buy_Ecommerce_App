@@ -1,5 +1,5 @@
 const loginForm = `
-<div class="login-header">Login</div>
+<div class="auth-header">Login</div>
 <div class="container">
     <div>
         <div class="mb-3">
@@ -25,9 +25,9 @@ const loginForm = `
                 required
             />
         </div>
-        <div class="login-footer">
+        <div class="auth-footer">
             <div onclick="changeForm(event)" class="forgot-password-login">Não possui uma conta?</div>
-            <button onclick="login(event)" type="submit" class="btn btn-warning">Entrar</button>
+            <button onclick="login(event)" type="submit" class="btn btn-primary">Entrar</button>
         </div>
     </div>
 </div>
@@ -37,7 +37,7 @@ const loginForm = `
 `
 
 const signupForm = `
-<div class="login-header">Sign Up</div>
+<div class="auth-header">Sign Up</div>
 <div class="container">
     <div>
         <div class="mb-3">
@@ -87,9 +87,9 @@ const signupForm = `
                 required
             />
         </div>
-        <div class="login-footer">
+        <div class="auth-footer">
             <div onclick="changeForm(event)" class="forgot-password-signup">Já possui uma conta?</div>
-            <button onclick="signup(event)" type="submit" class="btn btn-warning">Cadastrar</button>
+            <button onclick="signup(event)" type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
     </div>
 </div>
@@ -98,7 +98,7 @@ const signupForm = `
 </div>
 `
 function init() {
-    document.querySelector('.login-form').innerHTML = loginForm
+    document.querySelector('.auth-form').innerHTML = loginForm
 }
 
 function handleSubmit(ev) {

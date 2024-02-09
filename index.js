@@ -20,8 +20,17 @@ app.use(express.urlencoded({ extended: false }))
 // ROUTES
 
 app.use('/api', routes)
+
 app.use('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'))
+})
+
+app.use('/selos', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'selos.html'))
+})
+
+app.use('/produtos', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'produtos.html'))
 })
 
 //  Page not found handler

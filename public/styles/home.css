@@ -1,0 +1,120 @@
+.home-header {
+    background-image: url("../img/bannerbg.jpg");
+    width: 100vw;
+    min-height: 250px;
+    position: relative;
+    top: 60px;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.nav-card-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    top: -60px;
+    width: 100%;
+}
+
+.nav-card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'ITC Bold' !important;
+    background-color: #fff;
+    height: 80px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.8rem;
+    gap: 10px;
+    width: 120px;
+    border-radius: 10px;
+}
+
+.nav-card-button:hover {
+    cursor: pointer;
+    background-color: #eee;
+    transition: .3s ease-in-out;
+}
+
+.nav-card-button-text, .home-stamps-text {
+    font-family: 'Satoshi Bold';
+    font-size: 1rem;
+}
+
+.home-stamps-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-card-button-stamps-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stamps-redeem-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 500px;
+}
+
+.stamps-redeem-title {
+    font-size: 1.25rem;
+    font-family: 'Satoshi Bold';
+}
+
+.stamps-redeem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: start;
+    justify-content: start;
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--bs-secondary);
+    /* background-image: url("../img/bannerbg2.jpg");
+    width: 100vw;
+    min-height: 250px;
+    position: relative;
+    top: 72px;
+    background-repeat: no-repeat;
+    background-size: contain; */
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 768px) {
+    .home-header {
+        background-size: 70%;
+        height: 500px;
+        width: 100%;
+        background-position: center;
+    }
+
+    .nav-card-button-wrapper {
+        top: 0px;
+    }
+
+    .stamps-redeem-wrapper {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stamps-redeem {
+        width: 50%;
+        min-height: 450px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}

@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./scripts/setUserFromDatabase.js"></script>
+    <script src="https://kit.fontawesome.com/bcb8081ab4.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Compras Selo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+</head>
+
+<body>
+    <header class="header">
+        <div onclick="history.back()" class="button-icon"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="header-text">Selos</div>
+        <div class="dropdown">
+            <div class="button-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end animate slideIn">
+                <li><a class="dropdown-item dropdown-item-username" href="#"></a></li>
+                <li><a class="dropdown-item" href="/home">Home</a></li>
+                <li>
+                    <a class="dropdown-item main-stamp-item" href="/selos">
+                        <div>Selos:</div>
+                        <div class="d-flex gap-2" style="align-items: center;">
+                            <div class="user-tokens"></div>
+                            <i class="fa-brands fa-fantasy-flight-games main-stamp"></i>
+                        </div>
+                    </a>
+                </li>
+                <li onclick="logout()"><a class="dropdown-item" href="#">Sair</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="main-wrapper">
+        <div class="stamp-container">
+            <div class="d-flex gap-2 stamp-quantity-wrapper" style="align-items: center;">
+                <div>Você possui:</div>
+                <div class="container stamp-quantity-container">
+                    <div class="stamp-quantity"></div>
+                    <i class="fa-brands fa-fantasy-flight-games main-stamp stamp-icon"></i>
+                </div>
+            </div>
+            <div class="stamp-cards-wrapper">
+                <div onclick="setModalContent('transfer')" data-bs-toggle="modal" data-bs-target="#actionModal" class="stamp-card">
+                    <div class="stamp-card-icon">
+                        <i class="fa-regular stamps-icon fa-circle-up"></i>
+                    </div>
+                    <div class="stamp-card-description">
+                        Transferir Selos
+                    </div>
+                </div>
+                <div onclick="setModalContent('deposit')" data-bs-toggle="modal" data-bs-target="#actionModal" class="stamp-card">
+                    <div class="stamp-card-icon">
+                        <i class="fa-regular stamps-icon fa-circle-down"></i>
+                    </div>
+                    <div class="stamp-card-description">
+                        Depositar Selos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- MODAL -->
+    <div class="modal fade" id="actionModal" tabindex="-1" aria-labelledby="actionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="actionModalLabel"><!-- RENDERING IN SCRIPT './scripts/selos.js' --></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="actionModalInput" class="form-label modal-form-label"><!-- RENDERING IN SCRIPT './scripts/selos.js' --></label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="action"
+                            id="actionModalInput"
+                            aria-describedby="helpId"
+                            placeholder="EX: 50"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <div id="transferTo"><!-- RENDERING IN SCRIPT './scripts/selos.js' --></div>
+                    </div>                   
+                </div>
+                <div class="modal-footer"> 
+                    <!-- RENDERING IN SCRIPT './scripts/selos.js' -->
+                </div>
+                <div class="container error-notification">
+                    <div class="alert alert-danger error-notification-text" role="alert"></div>
+                </div>
+                <div class="container success-notification">
+                    <div class="alert alert-success success-notification-text" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="./scripts/stamps.js"></script>
+    <script src="./scripts/userDataFunctions.js"></script>
+</body>
+
+</html>
