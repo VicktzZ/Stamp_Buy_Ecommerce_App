@@ -26,7 +26,7 @@ const loginForm = `
             />
         </div>
         <div class="auth-footer">
-            <div onclick="changeForm(event)" class="forgot-password-login">Não possui uma conta?</div>
+            <div onclick="changeForm(event)" class="account-login">Não possui uma conta?</div>
             <button onclick="login(event)" type="submit" class="btn btn-primary">Entrar</button>
         </div>
     </div>
@@ -88,7 +88,7 @@ const signupForm = `
             />
         </div>
         <div class="auth-footer">
-            <div onclick="changeForm(event)" class="forgot-password-signup">Já possui uma conta?</div>
+            <div onclick="changeForm(event)" class="account-signup">Já possui uma conta?</div>
             <button onclick="signup(event)" type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
     </div>
@@ -106,12 +106,12 @@ function handleSubmit(ev) {
 }
 
 function changeForm(ev) {
-    const loginWrapper = document.querySelector('.login-form')
+    const authWrapper = document.querySelector('.auth-form')
 
-    if (ev.target.className === 'forgot-password-login') 
-        loginWrapper.innerHTML = signupForm   
+    if (ev.target.className === 'account-login') 
+        authWrapper.innerHTML = signupForm   
     else
-        loginWrapper.innerHTML = loginForm 
+        authWrapper.innerHTML = loginForm 
 }
 
 async function login(ev) {

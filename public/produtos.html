@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="scripts/setUserFromDatabase.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://kit.fontawesome.com/bcb8081ab4.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -36,8 +37,13 @@
     </header>
     <main class="main-wrapper">
         <div class="mb-5"></div>
-        <div class="product-wrapper container">
-            <!-- CONTENT RENDERING BY SCRIPT './script/products.js' -->
+        <div 
+            class="product-wrapper container"
+            hx-get="/api/product"
+            hx-swap="innerHTML"
+            hx-trigger="load"
+        >
+            <!-- CONTENT REDERING IN SERVER -->
         </div>
     </main>
     <!-- MODAL -->
@@ -46,10 +52,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="confirmPurchaseModalLabel">Tem certeza?</h1>
+                    <h1 class="modal-title fs-5" id="confirmPurchaseModalLabel">Comprar</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
                 </div>
-                <div class="modal-body"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>
+                <div class="modal-body">
+                    <!-- CONTENT RENDERING IN SCRIPT './script/products.js' -->
+                    Escolha uma das opções para realizar esta compra!
+                </div>
                 <div class="modal-footer"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>
                 <div class="container error-notification">
                     <div class="alert alert-danger error-notification-text" role="alert"><!-- CONTENT RENDERING IN SCRIPT './script/products.js' --></div>

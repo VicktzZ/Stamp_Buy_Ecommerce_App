@@ -81,145 +81,40 @@ async function confirmPurchase(ev, price) {
 // SET MODAL CONTENT
 
 function setModalContent(ev) {
-    const closeModalBtn = document.getElementById('#close-modal-btn')
+    let price
 
-    modalBody.innerHTML = 'Escolha uma das opções para realizar esta compra!'
-    
     const productId = ev.target.dataset.productId
+    modalBody.innerHTML = 'Escolha uma das opções para realizar esta compra!'
 
-    const prodFirstPriceCheckbox = document.getElementById(`${productId}-first_price`).checked
-    const prodFirstPrice = document.getElementById(`${productId}-first_price`).dataset.price
+    const prodFirstLabel = document.getElementById(`${productId}-first_price`)
+    const prodSecondLabel = document.getElementById(`${productId}-second_price`)
 
-    const prodSecondPriceCheckbox = document.getElementById(`${productId}-second_price`).checked
-    const prodSecondPrice = document.getElementById(`${productId}-second_price`).dataset.price
-
-    const checked = {
-        first_price: prodFirstPriceCheckbox,
-        second_price: prodSecondPriceCheckbox
-    }
-
-    for (const item in checked) {
-        const discountPrice = item === 'first_price' ? prodFirstPrice : prodSecondPrice
-
-        if (checked[item]) {
-            modalBody.innerHTML = `
-                <div class='d-flex gap-2'>
-                    Você irá perder
-                    <div class="d-flex gap-1" style="align-items: center;">
-                        <div class="user-tokens">${discountPrice}</div>
-                        <i class="fa-brands fa-fantasy-flight-games main-stamp"></i>
-                    </div> selos.
-                </div>
-            `
-
-            modalFooter.innerHTML = `
-                <button type="button" class="btn btn-secondary" id="close-modal-btn" data-bs-dismiss="modal">Cancelar</button>
-                <button onclick="confirmPurchase(event, ${discountPrice})" type="button" class="btn btn-primary confirm-purchase-button">Confirmar</button>
-            `
-
-            break
-        } else {
-            modalBody.innerHTML = 'Escolha uma das opções para realizar esta compra!'
-        }
-    }
-}
-
-// GENERATE PRODUCT CARDS
-
-(async function generateProducts() {
-    const products = await fetch('/api/product').then(res => res.json())
-
-    const calculateDiscount = (price, discount) => {
-        return (price - (price * (discount / 100))).toFixed(2)
-    }
-
-    const replaceComma = (str) => {
-        return String(str).replace('.', ',')
-    }
-
-    const productCards = products.map((product, index) => {
-        const { 
-            name,
-            price,
-            first_discountTokenValue,
-            first_discountValue,
-            second_discountTokenValue,
-            second_discountValue,
-            img,
-            id 
-        } = product
-
-        const discounts = [
-            {
-                tokenValue: first_discountTokenValue,
-                value: first_discountValue
-            },
-            {
-                tokenValue: second_discountTokenValue,
-                value: second_discountValue
-            }
-        ]
-
-        const discountPrices = [
-            replaceComma(calculateDiscount(price, discounts[0].value)),
-            replaceComma(calculateDiscount(price, discounts[1].value))
-        ]
-
-        return `
-            <div class="product-card-wrapper">
-                <div class="product-card-header">${name}</div>
-                <div class="product-card-body">
-                    <div class="product-card-image-wrapper">
-                        <img class="product-card-image" src="${img}" alt=${name} />
-                    </div>
-                    <div class="product-card-description">
-                        <div style="color: #FFFC; font-size: 1.1rem;">Preço de venda: R$${replaceComma(price)}</div>
-
-                        <div class="divider"></div>
-
-                        <div class="form-check product-form-check">
-                            <input class="form-check-input" name="price" type="radio" data-price="${discounts[0].tokenValue}" class='product-checkbox-price' id="${id}-first_price" />
-                            <label class="form-check-label product-form-check-label" for="${id}-first_price">
-                                <div class="d-flex gap-2" style="align-items: center;">
-                                    <div class="product-bold-text">${discounts[0].tokenValue}</div>
-                                    <i class="fa-brands fa-fantasy-flight-games main-stamp"></i>
-                                </div>
-                            </label>
-                            <label class="form-check-label product-form-check-label" for="${id}-first_price">
-                                <div class="d-flex" style="align-items: center; flex-direction: column;">
-                                    <div class="product-bold-text">R$${discountPrices[0]}</div>
-                                    <div class="product-subtitle-text">${discounts[0].value}% de desconto</div>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="form-check product-form-check">
-                            <input type="radio" class="form-check-input" name="price" data-price="${discounts[1].tokenValue}" class='product-checkbox-price' id="${id}-second_price" />
-                            <label class="form-check-label product-form-check-label" for="${id}-second_price">
-                                <div class="d-flex gap-2" style="align-items: center;">
-                                    <div class="product-bold-text">${discounts[1].tokenValue}</div>
-                                    <i class="fa-brands fa-fantasy-flight-games main-stamp"></i>
-                                </div>
-                            </label>
-                            <label class="form-check-label product-form-check-label" for="${id}-second_price">
-                                <div class="d-flex" style="align-items: center; flex-direction: column;">
-                                    <div class="product-bold-text">R$${discountPrices[1]}</div>
-                                    <div class="product-subtitle-text">${discounts[1].value}% de desconto</div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card-button btn-primary btn" data-bs-toggle="modal"
-                    data-bs-target="#confirmPurchaseModal">
-                    <div data-product-id="${id}" onclick="setModalContent(event)" class="product-stamp-price">
-                        Adquirir
-                    </div>
-                </div>
-            </div>
-        `
+    console.log({
+        id: productId,
+        pf: prodFirstLabel?.checked,
+        ps: prodSecondLabel?.checked
     })
 
-    const prodCardsInnerHTMLString = String(productCards).replace(/ ,/g, '')
-    productWrapper.innerHTML = prodCardsInnerHTMLString;
-})()
+    if (prodFirstLabel?.checked) {
+        price = prodFirstLabel.dataset.price
+    } else if (prodSecondLabel?.checked) {
+        price = prodSecondLabel.dataset.price
+    } else {
+        return modalBody.innerHTML = 'Escolha uma das opções para realizar esta compra!'
+    }
+
+    modalBody.innerHTML = `
+        <div class='d-flex gap-2'>
+            Você irá gastar
+            <div class="d-flex gap-1" style="align-items: center;">
+                <div class="user-tokens">${price}</div>
+                <i class="fa-brands fa-fantasy-flight-games main-stamp"></i>
+            </div> selos.
+        </div>
+    `
+
+    modalFooter.innerHTML = `
+        <button type="button" class="btn btn-secondary" id="close-modal-btn" data-bs-dismiss="modal">Cancelar</button>
+        <button onclick="confirmPurchase(event, ${price})" type="button" class="btn btn-primary confirm-purchase-button">Confirmar</button>
+    `
+}

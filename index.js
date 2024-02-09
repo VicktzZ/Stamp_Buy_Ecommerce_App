@@ -6,7 +6,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const path = require('path')
-const routes = require('./routes')
+const { authRoutes, productRoutes, userRoutes } = require('./routes')
 
 const app = express()
 
@@ -17,9 +17,13 @@ app.use(cors())
 app.use(bodyParser.json() )
 app.use(express.urlencoded({ extended: false }))
 
-// ROUTES
+// API ROUTES
 
-app.use('/api', routes)
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/product', productRoutes)
+
+// RENDERING ROUTES
 
 app.use('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'))
