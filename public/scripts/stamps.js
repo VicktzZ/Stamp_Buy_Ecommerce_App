@@ -1,6 +1,6 @@
 // VARIABLES ASSIGNMENT
 
-const user = JSON.parse(localStorage.getItem('user'))
+const userData = JSON.parse(localStorage.getItem('user'))
 
 const errorNotification = document.querySelector('.error-notification')
 const errorNotificationText = document.querySelector('.error-notification-text')
@@ -9,7 +9,7 @@ const successNotification = document.querySelector('.success-notification')
 const successNotificationText = document.querySelector('.success-notification-text')
 
 const stampQuantity = document.querySelector('.stamp-quantity')
-stampQuantity.innerHTML = user.tokens
+stampQuantity.innerHTML = userData.tokens
 
 function setModalContent(type) {
     const modalLabel = document.querySelector('#actionModalLabel')
@@ -59,7 +59,7 @@ async function confirmAction(ev, type) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id: user.id, amountToTransfer: amountTo })
+                body: JSON.stringify({ id: userData.id, amountToTransfer: amountTo })
             }).then(res => res.json())
 
             setTimeout(() => {
@@ -87,7 +87,7 @@ async function confirmAction(ev, type) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id: user.id, amountToDeposit: amountTo })
+                body: JSON.stringify({ id: userData.id, amountToDeposit: amountTo })
             })
     
             setTimeout(() => {

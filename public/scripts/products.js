@@ -24,7 +24,7 @@ async function confirmPurchase(ev, price) {
     ev.target.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>'
     
     setTimeout(async () => {
-        if (user.tokens < price) {
+        if (userData.tokens < price) {
             ev.target.innerHTML = 'Confirmar'
     
             errorNotification.style.display = 'block'
@@ -40,7 +40,7 @@ async function confirmPurchase(ev, price) {
         }
     
         try {
-            const newTokens = user.tokens - price
+            const newTokens = userData.tokens - price
     
             const response = await fetch('/api/user', {
                 method: 'PATCH',
@@ -48,7 +48,7 @@ async function confirmPurchase(ev, price) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: user.id,
+                    id: userData.id,
                     tokens: newTokens
                 })
             }).then(res => res.json())
@@ -69,7 +69,7 @@ async function confirmPurchase(ev, price) {
                 successNotification.style.display = 'block'
                 successNotificationText.textContent = 'Compra realizada com sucesso! Código para resgate: ' + productCode()
 
-                localStorage.setItem('user', JSON.stringify({ ...user, tokens: newTokens }))
+                localStorage.setItem('user', JSON.stringify({ ...userData, tokens: newTokens }))
             }, 500);
         } catch (error) {
             errorNotification.style.display = 'block'
