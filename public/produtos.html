@@ -37,13 +37,14 @@
     </header>
     <main class="main-wrapper">
         <div class="mb-5"></div>
+        <!-- USING HTMX TO FETCH DATA FROM SERVER AND RENDER -->
         <div 
             class="product-wrapper container"
             hx-get="/api/product"
             hx-swap="innerHTML"
             hx-trigger="load"
         >
-            <!-- CONTENT REDERING IN SERVER -->
+            <!-- CONTENT REDERING IN SERVER "../routes/products.js" -->
         </div>
     </main>
     <!-- MODAL -->

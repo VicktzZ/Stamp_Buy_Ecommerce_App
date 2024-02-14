@@ -3,6 +3,7 @@ const db = require('../services/database')
 
 // USER ROUTES
 
+// Get user by ID
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params
@@ -14,19 +15,22 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.patch('/', async (req, res) => {
+// Update user tokens
+router.patch('/:id', async (req, res) => {
     try {
-        const { id, tokens } = req.body
+        const { id } = req.params
+        const { tokens } = req.body
         const result = await db.query('UPDATE users SET tokens = ? WHERE id = ?', [ tokens, id ])
         
-        res.status(400).json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({ message: 'BAD REQUEST', error: error.message })
+        res.status(400).json({ message: 'BAD REQUEST', error: error.message })
     }
 })
 
 // USER ACTIONS
 
+// Transfer tokens
 router.post('/transfer/:transferTo', async (req, res) => {
     try {
         const { id, amountToTransfer } = req.body
@@ -47,6 +51,7 @@ router.post('/transfer/:transferTo', async (req, res) => {
     }
 })
 
+// Deposit tokens
 router.post('/deposit', async (req, res) => {
     try {
         const { id, amountToDeposit } = req.body

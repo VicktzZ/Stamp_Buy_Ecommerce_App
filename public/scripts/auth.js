@@ -1,3 +1,4 @@
+// LOGIN FORM HTML DOC
 const loginForm = `
 <div class="auth-header">Login</div>
 <div class="container">
@@ -36,6 +37,7 @@ const loginForm = `
 </div>
 `
 
+// SIGNUP FORM HTML DOC
 const signupForm = `
 <div class="auth-header">Sign Up</div>
 <div class="container">
@@ -97,96 +99,63 @@ const signupForm = `
     <div class="alert alert-danger error-notification-text" role="alert"></div>
 </div>
 `
+
+// SETS THE INITIAL FORM ON PAGE LOAD 
 function init() {
+    // USER VERIFICATION
+
+    if (localStorage.getItem('user')) {
+        window.location.href = '/home'
+    }
+
     document.querySelector('.auth-form').innerHTML = loginForm
 }
 
+/**
+ * Prevents the default form action.
+ * @param {Event} ev - The event object.
+ */
 function handleSubmit(ev) {
-    ev.preventDefault()
+    ev.preventDefault();
 }
 
+/**
+ * Changes the form based on the event target
+ * @param {Event} ev - The event triggering the form change
+ */
 function changeForm(ev) {
     const authWrapper = document.querySelector('.auth-form')
 
-    if (ev.target.className === 'account-login') 
+    if (ev.target.className === 'account-login') {
+        // Replace the form with signup form if the target is account-login
         authWrapper.innerHTML = signupForm   
-    else
+    } else {
+        // Replace the form with login form if the target is not account-login
         authWrapper.innerHTML = loginForm 
-}
-
-async function login(ev) {
-    const email = document.querySelector('#email').value
-    const password = document.querySelector('#password').value
-
-    const errorNotification = document.querySelector('.error-notification')
-    const errorNotificationText = document.querySelector('.error-notification-text')
-
-    const buttonName = ev.target.innerHTML
-
-    errorNotification.style.display = 'none'
-    ev.target.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>'
-
-    const [ response ] = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email,
-            password
-        })
-    }).then(res => res.json())
-
-    setTimeout(() => {
-        if (!response) {
-            errorNotification.style.display = 'block'
-            errorNotificationText.textContent = 'Usuário ou senha inválidos!'
-            ev.target.innerHTML = buttonName
-        } else {
-            localStorage.setItem('user', JSON.stringify(response))
-            window.location.href = '/home'
-        }
-        console.log(response);
-    }, 500);
-}
-
-async function signup(ev) {
-    const email = document.querySelector('#email').value
-    const username = document.querySelector('#username').value
-    const password = document.querySelector('#password').value
-    const confirmPassword = document.querySelector('#confirm-password').value
-
-    const errorNotification = document.querySelector('.error-notification')
-    const errorNotificationText = document.querySelector('.error-notification-text')
-
-    const buttonName = ev.target.innerHTML
-
-    errorNotification.style.display = 'none'
-    ev.target.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>'
-
-    if (password !== confirmPassword) {
-        errorNotification.style.display = 'block'
-        errorNotificationText.textContent = 'As senhas precisam ser iguais!'
-        ev.target.innerHTML = buttonName
-        return
     }
+}
 
+/**
+ * Handles the login process
+ * @param {Event} ev - The event object
+ */
+async function login(ev) {
+    // Get email and password from input fields
+    const email = document.querySelector('#email').value
+    const password = document.querySelector('#password').value
+
+    // Get error notification elements and button name
+    const errorNotification = document.querySelector('.error-notification')
+    const errorNotificationText = document.querySelector('.error-notification-text')
+    const buttonName = ev.target.innerHTML
+
+    // Set default values for error notification and button name
+    errorNotification.style.display = 'none'
+    ev.target.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>'
+
+    // Send login request to the server
     try {
-        const user = {
-            email,
-            username,
-            password
-        }
-
-        const response = await fetch('/api/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        }).then(res => res.json())
-
-        const [ userResponse ] = await fetch('/api/auth/login', {
+        const [ response ] = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -197,20 +166,104 @@ async function signup(ev) {
             })
         }).then(res => res.json())
     
+        // Handle server response
+        setTimeout(() => {
+            if (!response) {
+                // Display error notification if login is unsuccessful
+                errorNotification.style.display = 'block'
+                errorNotificationText.textContent = 'Invalid username or password!'
+                ev.target.innerHTML = buttonName
+            } else {
+                // Store user data in local storage and redirect to home page if login is successful
+                localStorage.setItem('user', JSON.stringify(response))
+                window.location.href = '/home'
+            }
+            console.log(response);
+        }, 500);
+    } catch (error) {
+        // Handle errors if the login request fails
+        errorNotification.style.display = 'block'
+        errorNotificationText.textContent = 'Oops! Something went wrong!'
+        ev.target.innerHTML = buttonName        
+    }
+}
+
+/**
+ * Handles the signup process
+ * @param {Event} ev - The event object
+ */
+async function signup(ev) {
+    // Get input values
+    const email = document.querySelector('#email').value
+    const username = document.querySelector('#username').value
+    const password = document.querySelector('#password').value
+    const confirmPassword = document.querySelector('#confirm-password').value
+
+    // Get error notification elements
+    const errorNotification = document.querySelector('.error-notification')
+    const errorNotificationText = document.querySelector('.error-notification-text')
+
+    // Get button name
+    const buttonName = ev.target.innerHTML
+
+    // Hide error notification and show spinner
+    errorNotification.style.display = 'none'
+    ev.target.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>'
+
+    // Validate password match
+    if (password !== confirmPassword) {
+        errorNotification.style.display = 'block'
+        errorNotificationText.textContent = 'Passwords must match!'
+        ev.target.innerHTML = buttonName
+        return
+    }
+
+    try {
+        // Create user object
+        const user = {
+            email,
+            username,
+            password
+        }
+
+        // Send signup request
+        const response = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then(res => res.json())
+
+        // Send login request if user created successfully
+        const [userResponse] = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        }).then(res => res.json())
+
+        // Delay the response handling
         setTimeout(() => {
             if (response.error) {
                 ev.target.innerHTML = buttonName
                 errorNotification.style.display = 'block'
-                errorNotificationText.textContent = 'Preencha todos os campos!'
+                errorNotificationText.textContent = 'Fill in all the fields!'
             } else {
+                // Save user data and redirect to home page
                 localStorage.setItem('user', JSON.stringify(userResponse))
                 window.location.href = '/home'
             }
         }, 500);
     } catch (error) {
+        // Handle errors
         ev.target.innerHTML = buttonName
         errorNotification.style.display = 'block'
-        errorNotificationText.textContent = 'Ops! Algo deu errado, tente novamente.'
+        errorNotificationText.textContent = 'Oops! Something went wrong, please try again.'
     }
 }
 

@@ -1,10 +1,12 @@
 // GETTING USER DATA FROM LOCAL STORAGE
 const user = JSON.parse(localStorage.getItem('user'))
 
-// USER LOGOUT FUNCTION
+/**
+ * Logout the user by removing user data from local storage and redirecting to the home page.
+ */
 function logout() {
-    localStorage.removeItem('user')
-    window.location.href = '/'
+    localStorage.removeItem('user');
+    window.location.href = '/';
 }
 
 // IF USER DOESN'T EXISTS REDIRECT TO LOGIN

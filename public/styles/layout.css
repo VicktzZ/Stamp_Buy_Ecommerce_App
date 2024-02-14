@@ -95,3 +95,13 @@
     margin-bottom: 10px;
     border: 1px solid #eee;
 }
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+}
