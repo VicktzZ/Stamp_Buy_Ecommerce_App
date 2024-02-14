@@ -82,6 +82,9 @@
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     background-color: var(--bs-secondary);
+
+    /* PARA ADICIONAR IMAGEM */
+
     /* background-image: url("../img/bannerbg2.jpg");
     width: 100vw;
     min-height: 250px;
