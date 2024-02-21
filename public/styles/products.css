@@ -106,6 +106,18 @@
     width: 30px;
 }
 
+.product-img-purchase-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--default-padding);
+}
+
+.product-img-purchase {
+    width: 200px;
+    height: 225px;
+}
+
 /* MISC */
 
 .product-bold-text {

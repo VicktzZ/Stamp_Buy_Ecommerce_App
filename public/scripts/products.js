@@ -108,9 +108,11 @@ async function confirmPurchase(ev, price) {
  * Sets the content of the modal based on the selected product and its prices
  * @param {Event} ev - The event object
  */
-function setModalContent(ev) {
+async function setModalContent(ev) {
     // Retrieve the product ID from the clicked element's data attribute
     const productId = ev.target.dataset.productId
+
+    console.log(ev);
 
     // Set the initial modal body content
     modalBody.innerHTML = 'Escolha uma das opções para realizar esta compra!'
@@ -118,13 +120,6 @@ function setModalContent(ev) {
     // Retrieve the first and second price labels for the product
     const prodFirstLabel = document.getElementById(`${productId}-first_price`)
     const prodSecondLabel = document.getElementById(`${productId}-second_price`)
-
-    // Log the product ID and the checked status of the price labels
-    console.log({
-        id: productId,
-        pf: prodFirstLabel?.checked,
-        ps: prodSecondLabel?.checked
-    })
 
     // Determine the price based on the checked status of the price labels
     let price
@@ -137,6 +132,8 @@ function setModalContent(ev) {
         return modalBody.innerHTML = 'Escolha uma das opções para realizar esta compra!'
     }
 
+    const { img: productImg } = await fetch('/api/product/' + productId).then(async res => await res.json())
+
     // Update the modal body with the selected price
     modalBody.innerHTML = `
         <div class='d-flex gap-2'>
@@ -147,6 +144,12 @@ function setModalContent(ev) {
             </div> selos.
         </div>
     `
+
+    modalBody.insertAdjacentHTML('beforeend', `
+        <div class="product-img-purchase-wrapper">
+            <img class="product-img-purchase" src="${productImg}" alt="Product image"/>
+        </div>
+    `)
 
     // Update the modal footer with buttons for cancel and purchase confirmation
     modalFooter.innerHTML = `

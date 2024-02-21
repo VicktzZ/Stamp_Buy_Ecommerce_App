@@ -5,7 +5,8 @@ const { generateProductCards } = require('../utils/server')
 
 // PRODUCTS ROUTES
 
-router.get('/', async (req, res) => {
+// RENDER
+router.get('/render', async (req, res) => {
     try {
         const [ products ] = await db.query('SELECT * FROM products')
         
@@ -17,6 +18,28 @@ router.get('/', async (req, res) => {
         const prodCardsHTMLString = String(productCards).replace(/ ,/g, '')
 
         res.send(prodCardsHTMLString)
+    } catch (error) {
+        res.status(400).json({ message: 'BAD REQUEST', error: error.message })
+    }
+})
+
+router.get('/', async (req, res) => {
+    try {
+        const [ products ] = await db.query('SELECT * FROM products')
+
+        res.status(200).json(products)
+    } catch (error) {
+        res.status(400).json({ message: 'BAD REQUEST', error: error.message })
+    }
+})
+
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const [ [ product ] ] = await db.query('SELECT * FROM products WHERE id = ?', [ id ])
+
+        res.status(200).json(product)
     } catch (error) {
         res.status(400).json({ message: 'BAD REQUEST', error: error.message })
     }

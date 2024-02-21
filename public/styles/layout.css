@@ -66,7 +66,7 @@
 }
 
 .button-icon:hover, .button-icon:active {
-    background-color: var(--bs-gray);
+    background-color: var(--bs-secondary-hover);
     color: var(--bs-light);
 }
 
@@ -76,7 +76,7 @@
 
 .main-stamp {
     font-size: 1.25rem;
-    color: var(--bs-warning);
+    color: var(--bs-yellow);
 }
 
 .main-stamp-item {
@@ -102,6 +102,6 @@
 }
 
 .btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0b5ed7;
+    background-color: var(--bs-primary-hover);
+    border-color: var(--bs-primary-hover);
 }
